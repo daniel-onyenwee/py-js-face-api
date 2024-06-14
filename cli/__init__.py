@@ -1,3 +1,3 @@
-import cli.cli_parser as cli_parser
+from .cli_parser import parser
 
-PyJsFaceApiCli = cli_parser.parser
+py_js_face_api_cli = parser
