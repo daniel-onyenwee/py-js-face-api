@@ -39,15 +39,13 @@ This project provides a Python-based solution for face detection and recognition
     pip install -r requirements.txt
     ```
 
-### PyInstaller
+### Create Executable
 
-1. **Create the executable:**
+```sh
+.\build.bat
+```
 
-    ```sh
-    python build.py
-    ```
-
-    This will generate an executable in the `dist` directory.
+This will generate an executable in the `dist` directory.
 
 ## Usage
 
