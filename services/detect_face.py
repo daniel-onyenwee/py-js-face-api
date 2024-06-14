@@ -1,8 +1,8 @@
 import json
-import face_recognition
 from utils import base64_to_image, is_valid_base64
+from utils.face_recognition import face_locations
 
-def detect_face(face_base64_string:str, pretty_print:bool = False) -> str:
+def detect_face(models, face_base64_string:str, pretty_print:bool = False) -> str:
     json_indent = None
 
     if pretty_print == True:
@@ -12,8 +12,8 @@ def detect_face(face_base64_string:str, pretty_print:bool = False) -> str:
         return json.dumps({
             "ok": False,
             "error": {
-                "message": "Message parameter 'face_image_data'",
-                "code": 1000
+                "message": "Missing parameter 'face_image_data'",
+                "code": 1001
             },
             "data": None
         }, indent=json_indent)
@@ -23,7 +23,7 @@ def detect_face(face_base64_string:str, pretty_print:bool = False) -> str:
             "ok": False,
             "error": {
                 "message": "Invalid face_image_data format",
-                "code": 1001
+                "code": 1002
             },
             "data": None
         }, indent=json_indent)
@@ -35,12 +35,12 @@ def detect_face(face_base64_string:str, pretty_print:bool = False) -> str:
             "ok": False,
             "error": {
                 "message": "Invalid face_image_data format",
-                "code": 1001
+                "code": 1002
             },
             "data": None
         }, indent=json_indent)
     
-    faces = face_recognition.face_locations(image)
+    faces = face_locations(models, image)
 
     return json.dumps({
         "ok": True,
